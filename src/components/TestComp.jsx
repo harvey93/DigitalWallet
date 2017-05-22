@@ -29,8 +29,8 @@ class TestComp extends React.Component {
       // this.props.createPayment(1,
       //   {firstname: "eminem", lastname: "white", card: "mastercard", card_number: "123",
       //     expires_month: "5", expires_year: "4", csc: "410"});
-      this.props.updatePayment(14,
-        {firstname: "valod", lastname: "black", card: "mastercard", card_number: "123",
+      this.props.updatePayment(13,
+        {firstname: "hrant", lastname: "black", card: "mastercard", card_number: "123",
           expires_month: "5", expires_year: "4", csc: "410", user_id: "1"});
     }
 

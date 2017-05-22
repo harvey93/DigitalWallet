@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { AppBar } from 'material-ui';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 
-import TestComp from './testComp';
+// import TestComp from './testComp';
+import User from './User';
 
 
 const {Dialog, FlatButton, IconMenu, IconButton, MenuItem} = mui;
@@ -82,7 +83,7 @@ class Application extends Component {
 
   render(){
     return(
-      <TestComp />
+      <User />
     );
   }
 
@@ -96,4 +97,3 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps
 )(Application);
-
