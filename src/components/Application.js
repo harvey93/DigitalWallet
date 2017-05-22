@@ -7,6 +7,7 @@ import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 
 // import TestComp from './testComp';
 import User from './User';
+import PaymentForm from './PaymentForm';
 
 
 const {Dialog, FlatButton, IconMenu, IconButton, MenuItem} = mui;
@@ -80,10 +81,12 @@ class Application extends Component {
   constructor(props) {
     super(props);
   }
-
   render(){
     return(
-      <User />
+      <div>
+        <User userId="2"/>
+        <PaymentForm userId="2"/>
+      </div>
     );
   }
 

@@ -10,10 +10,15 @@ class PaymentItem extends React.Component{
   }
 
   render(){
-    console.log(this.props);
+    let cardNums = this.props.paymentInfo.card_number;
+    // cardNums.split(" ")[]
     return (
       <div>
-        <h1>{this.props.word}</h1>
+        <div className='name-div-container'>
+          <h1>{this.props.paymentInfo.firstname}</h1>
+          <h1>{this.props.paymentInfo.lastname}</h1>
+          <h1>x-{cardNums.split(" ")[3]}</h1>
+        </div>
       </div>
     );
   }

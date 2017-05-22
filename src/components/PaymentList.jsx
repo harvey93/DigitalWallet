@@ -10,13 +10,17 @@ class PaymentList extends React.Component{
     super(props);
   }
 
+  componentDidMount(){
+    this.props.fetchUserPayments(this.props.userId);
+  }
+
   render(){
-    console.log(this.props);
+    // console.log(this.props.payments);
     return (
       <div>
-        <PaymentItem word='hello'/>
-        <PaymentItem word='goodbye'/>
-        <PaymentItem word='good afternoon'/>
+        {this.props.payments.map((el, idx) => (
+          <PaymentItem key={idx} paymentInfo={el}/>
+        ))}
       </div>
     );
   }

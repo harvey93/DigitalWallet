@@ -3,7 +3,11 @@ import {RECEIVE_PAYMENTS} from '../actions/paymentActions';
 const paymentReducer = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_PAYMENTS:
-      return action.payments;
+      // if(action.payments.length === 1){
+      //   return [action.payments];
+      // }else{
+        return action.payments;
+      // }
     default:
       return state;
   }
