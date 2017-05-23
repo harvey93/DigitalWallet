@@ -1,0 +1,18 @@
+.name-div-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid black;
+  height: 100px;
+  max-width: 400px;
+}
+
+/*.payment-list-item-h1 {
+  width: 100px;
+}*/
+
+.payment-list-button-div {
+  display: flex;
+  width: 130px;
+  justify-content: space-between;
+}

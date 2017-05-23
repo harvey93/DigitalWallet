@@ -19,7 +19,7 @@ class PaymentList extends React.Component{
     return (
       <div>
         {this.props.payments.map((el, idx) => (
-          <PaymentItem key={idx} paymentInfo={el}/>
+          <PaymentItem userId={this.props.userId} key={idx} paymentInfo={el}/>
         ))}
       </div>
     );

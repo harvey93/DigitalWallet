@@ -80,10 +80,12 @@ const {Dialog, FlatButton, IconMenu, IconButton, MenuItem} = mui;
 class Application extends Component {
   constructor(props) {
     super(props);
+    this.state = { addForm: false};
   }
   render(){
     return(
       <div>
+        <User userId='2'/>
         <PaymentForm userId="2"/>
       </div>
     );

@@ -7,6 +7,14 @@ import {fetchPayments, fetchUserPayments, removePayment, createPayment, updatePa
 class PaymentItem extends React.Component{
   constructor(props) {
     super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete(){
+    // console.log(this.props.paymentInfo);
+    // console.log(this.props.userId);
+    this.props.removePayment(this.props.paymentInfo.id)
+      .then( () => this.props.fetchUserPayments(this.props.userId));
   }
 
   render(){
@@ -15,9 +23,13 @@ class PaymentItem extends React.Component{
     return (
       <div>
         <div className='name-div-container'>
-          <h1>{this.props.paymentInfo.firstname}</h1>
-          <h1>{this.props.paymentInfo.lastname}</h1>
-          <h1>x-{cardNums.split(" ")[3]}</h1>
+            <h1 className='payment-list-item-h1'>{this.props.paymentInfo.firstname}</h1>
+            <h1 className='payment-list-item-h1'>{this.props.paymentInfo.lastname}</h1>
+            <h1 className='payment-list-item-h1'>x-{cardNums.split(" ")[3]}</h1>
+          <div className='payment-list-button-div'>
+            <h1>Update</h1>
+            <h1 onClick={this.handleDelete}>Delete</h1>
+          </div>
         </div>
       </div>
     );
