@@ -84,7 +84,6 @@ class Application extends Component {
   render(){
     return(
       <div>
-        <User userId="2"/>
         <PaymentForm userId="2"/>
       </div>
     );

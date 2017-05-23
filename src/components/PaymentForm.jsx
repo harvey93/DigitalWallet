@@ -13,7 +13,6 @@ class PaymentForm extends React.Component{
        expires_year: '', expires_month: '', csc: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
-    this.updateCardNum = this.updateCardNum.bind(this);
   }
 
   handleSubmit(e){
@@ -25,7 +24,8 @@ class PaymentForm extends React.Component{
     card_total.push(this.state.card_number4);
     // console.log(card_total.join(' '));
     this.setState({["card_number"]: card_total.join(' ')},
-      () => this.props.createPayment(this.props.userId, this.state));
+      () => this.props.createPayment(this.props.userId, this.state)
+        .then( () => this.props.fetchUserPayments(this.props.userId)));
     // console.log(this.props);
     // console.log(this.state);
     // this.props.createPayment(this.props.userId, this.state).then( () => console.log('success'));
@@ -37,82 +37,101 @@ class PaymentForm extends React.Component{
     );
   }
 
-  updateCardNum(){
-    console.log('in');
-  }
-
   render(){
     // cardNums.split(" ")[]
     // console.log(this.props);
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text"
-          className='payment-form-input'
-          placeholder='firstname'
-          onChange={this.update('firstname')}></input>
-        <input type="text"
-          className='payment-form-input'
-          placeholder='lastname'
-          onChange={this.update('lastname')}></input>
-        <div>
+      <form onSubmit={this.handleSubmit} className='form-div'>
+        <div className='name-input-container'>
+          <input type="text"
+            className='payment-form-input'
+            placeholder='firstname'
+            maxLength='15'
+            onChange={this.update('firstname')}></input>
+          <input type="text"
+            className='payment-form-input'
+            placeholder='lastname'
+            maxLength='15'
+            onChange={this.update('lastname')}></input>
+        </div>
+        <div className='cc-input-div'>
           <input type="password"
             maxLength='4'
-            className='payment-form-input'
+            className='payment-cc-input'
             placeholder='####'
             onChange={this.update('card_number1')}></input>
           <input type="password"
             maxLength='4'
-            className='payment-form-input'
+            className='payment-cc-input'
             placeholder='####'
             onChange={this.update('card_number2')}></input>
           <input type="password"
             maxLength='4'
-            className='payment-form-input'
+            className='payment-cc-input'
             placeholder='####'
             onChange={this.update('card_number3')}></input>
           <input type="password"
             maxLength='4'
-            className='payment-form-input'
+            className='payment-cc-input'
             placeholder='####'
             onChange={this.update('card_number4')}></input>
         </div>
-        <div>
+        <div className='cc-type'>
           <label>
-            <input type="radio" className='card-type' name="cardType" value="visa" onChange={this.update('card')}/>
-            <i className="fa fa-cc-visa" aria-hidden="true"></i>
+            <input type="radio" className='card-type'
+              name="cardType" value="visa" onChange={this.update('card')}/>
+            <i className="fa fa-cc-visa fa-2x visa-color" aria-hidden="true"></i>
           </label>
           <label>
             <input type="radio" className='card-type' name="cardType" value="mastercard"  onChange={this.update('card')}/>
-            <i className="fa fa-cc-mastercard" aria-hidden="true"></i>
+            <i className="fa fa-cc-mastercard fa-2x mastercard-color" aria-hidden="true"></i>
           </label>
           <label>
             <input type="radio" className='card-type' name="cardType" value="discover"  onChange={this.update('card')}/>
-            <i className="fa fa-cc-discover" aria-hidden="true"></i>
+            <i className="fa fa-cc-discover fa-2x discover-color" aria-hidden="true"></i>
           </label>
           <label>
             <input type="radio" className='card-type' name="cardType" value="amex"  onChange={this.update('card')}/>
-            <i className="fa fa-cc-amex" aria-hidden="true"></i>
+            <i className="fa fa-cc-amex fa-2x amex-color" aria-hidden="true"></i>
           </label>
-        </div>
-        <div>
-          <input type="text"
-            maxLength='2'
-            className='payment-form-input'
-            placeholder='MM'
-            onChange={this.update('expires_month')}></input>
-          <input type="text"
-            maxLength='2'
-            className='payment-form-input'
-            placeholder='YY'
-            onChange={this.update('expires_year')}></input>
-          <input type="text"
-            maxLength='3'
-            className='payment-form-input'
-            placeholder='###'
-            onChange={this.update('csc')}></input>
-        </div>
+          <label>
+            <input type="radio" className='card-type' name="cardType" value="paypal"  onChange={this.update('card')}/>
+              <i className="fa fa-cc-paypal fa-2x paypal-color" aria-hidden="true"></i>
+          </label>
+          <label>
+            <input type="radio" className='card-type' name="cardType" value="bitcoin"  onChange={this.update('card')}/>
+              <i className="fa fa-btc fa-2x btc-color" aria-hidden="true"></i>
+          </label>
 
-        <input type='Submit' value='Submit Form'/>
+          <label>
+            <input type="radio" className='card-type' name="cardType" value="stripe"  onChange={this.update('card')}/>
+              <i className="fa fa-cc-stripe fa-2x stripe-color" aria-hidden="true"></i>
+          </label>
+
+        </div>
+        <div className='exp-input-fields-container'>
+          <div className='exp-fields-div'>
+            <input type="text"
+              maxLength='2'
+              className='payment-form-input exp-fields'
+              placeholder='MM'
+              onChange={this.update('expires_month')}></input>
+            <h1 className='slash'>/</h1>
+            <input type="text"
+              maxLength='2'
+              className='payment-form-input exp-fields'
+              placeholder='YY'
+              onChange={this.update('expires_year')}></input>
+          </div>
+          <div className='submit-container'>
+            <input type="text"
+              maxLength='3'
+              className='payment-form-input csc-input'
+              placeholder='csc'
+              onChange={this.update('csc')}></input>
+            <input type='Submit' className='submit-button' value='Add'/>
+          </div>
+        </div>
       </form>
     );
   }

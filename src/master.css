@@ -75,11 +75,122 @@ body {
 }
 
 .payment-form-input {
-  border: 1px solid black;
+  border: 1px solid #666666;
+  border-width: thin;
+  height: 40px;
+  width: 150px;
+  text-align: center;
+  color: #2f4f4f;
+  font-weight: bold;
 }
 
 .card-type {
   -moz-appearance: none;
 -webkit-appearance: none;
 appearance: none;
+}
+
+.name-input-container {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment-cc-input {
+  border: 1px solid #666666;
+  border-width: thin;
+  width: 60px;
+  height: 30px;
+  text-align: center;
+}
+
+.cc-input-div {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-div {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 400px;
+}
+
+.cc-type {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.visa-color{
+  color: #1a1f71;
+}
+.discover-color{
+  color: orange;
+}
+.mastercard-color{
+  color: #cc0000;
+}
+.amex-color{
+  color: #4d4f53;
+}
+
+.btc-color {
+  color: #FFD700;
+}
+.paypal-color {
+  color: #009cde;
+}
+
+.stripe-color {
+  color: #00afe1;
+}
+
+.cc-type input[type="radio"]:checked ~ * {
+    border: 1px solid #ff7e82;
+    border-width: medium;
+}
+
+.exp-input-fields-container {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.exp-fields {
+  width: 60px;
+  border: none;
+
+}
+
+.exp-fields-div {
+  width: 125px;
+  display: flex;
+  border: 1px solid #666666;
+}
+
+.csc-input {
+  width: 60px;
+}
+
+.slash {
+  font-size: 30px;
+  text-align: center;
+}
+
+.submit-container {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit-button {
+  background: #ff7e82;
+  color: white;
+  border-radius: 2px;
+  width: 60px;
+  text-align: center;
 }
