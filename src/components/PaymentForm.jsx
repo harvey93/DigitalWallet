@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {fetchPayments, fetchUserPayments, removePayment, createPayment, updatePayment} from '../actions/paymentActions.js';
+import { receiveStatus } from '../actions/statusActions.js';
 
 
 class PaymentForm extends React.Component{
@@ -25,7 +26,12 @@ class PaymentForm extends React.Component{
     // console.log(card_total.join(' '));
     this.setState({["card_number"]: card_total.join(' ')},
       () => this.props.createPayment(this.props.userId, this.state)
-        .then( () => this.props.fetchUserPayments(this.props.userId)));
+        .then(
+          () => this.props.fetchUserPayments(this.props.userId))
+        .then(
+          () => this.props.receiveStatus('bye')
+        ));
+
     // console.log(this.props);
     // console.log(this.state);
     // this.props.createPayment(this.props.userId, this.state).then( () => console.log('success'));
@@ -139,14 +145,16 @@ class PaymentForm extends React.Component{
 
 const mapStateToProps = (state) => ({
   // puppies: state.default.puppies || [],
-  payments: state.default.payments || []
+  payments: state.default.payments || [],
+  status: state.default.status
 });
 
 const mapDispatchToProps = dispatch => ({
     fetchUserPayments: (id) => dispatch(fetchUserPayments(id)),
     removePayment: (id) => dispatch(removePayment(id)),
     createPayment: (id, payment) => dispatch(createPayment(id, payment)),
-    updatePayment: (id, payment) => dispatch(updatePayment(id, payment))
+    updatePayment: (id, payment) => dispatch(updatePayment(id, payment)),
+    receiveStatus: (status) => dispatch(receiveStatus(status))
 });
 
 export default connect(

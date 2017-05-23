@@ -23,12 +23,12 @@ class PaymentItem extends React.Component{
     return (
       <div>
         <div className='name-div-container'>
-            <h1 className='payment-list-item-h1'>{this.props.paymentInfo.firstname}</h1>
-            <h1 className='payment-list-item-h1'>{this.props.paymentInfo.lastname}</h1>
+            <h1 className='payment-list-item-h1'>{this.props.paymentInfo.firstname.slice(0, 8)}</h1>
+            <h1 className='payment-list-item-h1'>{this.props.paymentInfo.lastname.slice(0,8)}</h1>
             <h1 className='payment-list-item-h1'>x-{cardNums.split(" ")[3]}</h1>
           <div className='payment-list-button-div'>
-            <h1>Update</h1>
-            <h1 onClick={this.handleDelete}>Delete</h1>
+            <h1 className='buttons'>Update</h1>
+            <h1 className='buttons'onClick={this.handleDelete}>Delete</h1>
           </div>
         </div>
       </div>

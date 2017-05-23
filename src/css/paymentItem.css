@@ -2,17 +2,36 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #d3d3d3;
+  border-width: medium;
   height: 100px;
   max-width: 400px;
+  color: #666666;
+  font-weight: bold;
 }
 
-/*.payment-list-item-h1 {
-  width: 100px;
-}*/
+.payment-list-item-h1 {
+  width: 80px;
+}
 
 .payment-list-button-div {
   display: flex;
   width: 130px;
   justify-content: space-between;
+}
+
+.buttons {
+  background: #ff7e82;
+  color: white;
+  border-radius: 2px;
+  width: 60px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: normal;
+}
+
+.buttons:hover{
+  cursor: pointer;
 }

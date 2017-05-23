@@ -1,0 +1,41 @@
+.header-div {
+  height: 100px;
+  background: #ff7e82;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.list-and-form {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.add-button {
+  color: #FF5257;
+  font-size: 20px;
+}
+
+.add-div {
+  display: flex;
+  align-items: center;
+  width: 80px;
+}
+
+.add-text {
+  margin-left: 10px;
+}
+
+.add-div:hover {
+  cursor: pointer;
+}
+
+.user-div {
+}
+
+@media screen and (max-width: 750px) and (min-width: 400px) {
+    .list-and-form {
+        display: block;
+    }
+}

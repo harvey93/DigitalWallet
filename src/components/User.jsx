@@ -1,20 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {fetchPayments, fetchUserPayments, removePayment, createPayment, updatePayment} from '../actions/paymentActions.js';
+import { receiveStatus } from '../actions/statusActions.js';
 
 import PaymentList from './PaymentList';
+import PaymentForm from './PaymentForm';
 
 
 class User extends React.Component{
   constructor(props) {
     super(props);
+    this.renderForm = this.renderForm.bind(this);
+    this.changeStatus = this.changeStatus.bind(this);
   }
+
+  renderForm(){
+    if (this.props.status === 'addForm') {
+      return(
+        <PaymentForm userId={this.props.userId}/>
+      );
+    }
+  }
+
+  changeStatus() {
+    // console.log('in');
+    this.props.receiveStatus('addForm');
+  }
+
+
 
   render(){
     // console.log(this.props);
     return (
-      <div>
-        <PaymentList userId={this.props.userId}/>
+      <div className='user-div'>
+        <div className='header-div'>
+        </div>
+        <div className='list-and-form'>
+          <div>
+            <div className='add-div' onClick={this.changeStatus}>
+              <i className="fa fa-plus-circle fa-lg add-button" aria-hidden="true"></i>
+              <h1 className='add-button add-text'>Add</h1>
+            </div>
+          <PaymentList userId={this.props.userId}/>
+          </div>
+          {this.renderForm()}
+        </div>
       </div>
     );
   }
@@ -22,14 +52,17 @@ class User extends React.Component{
 
 const mapStateToProps = (state) => ({
   // puppies: state.default.puppies || [],
-  payments: state.default.payments || []
+  payments: state.default.payments || [],
+  status: state.default.status
 });
 
 const mapDispatchToProps = dispatch => ({
     fetchUserPayments: (id) => dispatch(fetchUserPayments(id)),
     removePayment: (id) => dispatch(removePayment(id)),
     createPayment: (id, payment) => dispatch(createPayment(id, payment)),
-    updatePayment: (id, payment) => dispatch(updatePayment(id, payment))
+    updatePayment: (id, payment) => dispatch(updatePayment(id, payment)),
+    receiveStatus: (status) => dispatch(receiveStatus(status))
+
 });
 
 export default connect(
