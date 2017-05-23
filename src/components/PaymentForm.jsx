@@ -7,11 +7,55 @@ import { receiveStatus } from '../actions/statusActions.js';
 class PaymentForm extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {firstname: '', lastname: '', card: '',
-      card_number: '',
-      card_number1: '', card_number2: '',
-      card_number3: '', card_number4: '',
-       expires_year: '', expires_month: '', csc: ''};
+    // this.state =
+    // this.state = this.props.status[1] || {firstname: '', lastname: '', card: '',
+    //   card_number: '',
+    //   card_number1: '', card_number2: '',
+    //   card_number3: '', card_number4: '',
+    //    expires_year: '', expires_month: '', csc: ''};
+    if (this.props.status[1]) {
+        this.state = {
+          id: this.props.status[1].id,
+          firstname: this.props.status[1].firstname, lastname: this.props.status[1].lastname,
+          card: this.props.status[1].card, card_number: this.props.status[1].card_number,
+          card_number1: this.props.status[1].card_number.split(' ')[0],
+          card_number2: this.props.status[1].card_number.split(' ')[1],
+          card_number3: this.props.status[1].card_number.split(' ')[2],
+          card_number4: this.props.status[1].card_number.split(' ')[3],
+          expires_year: this.props.status[1].expires_year,
+          expires_month: this.props.status[1].expires_month,
+          csc: this.props.status[1].csc,
+          user_id: this.props.status[1].user_id
+        };
+        // this.state = this.props.status[1];
+    } else {
+      this.state = {firstname: '', lastname: '', card: '',
+               card_number: '',
+               card_number1: '', card_number2: '',
+               card_number3: '', card_number4: '',
+                expires_year: '', expires_month: '', csc: ''};
+    }
+    // if (this.props.status[1]) {
+    //   this.state = {
+    //     firstname: this.props.status[1].firstname, lastname: this.props.status[1].lastname,
+    //     card: this.props.status[1].card, card_number: this.props.status[1].card_number,
+    //     card_number1: this.props.status[1].card_number.split(' ')[0],
+    //     card_number2: this.props.status[1].card_number.split(' ')[1],
+    //     card_number3: this.props.status[1].card_number.split(' ')[2],
+    //     card_number4: this.props.status[1].card_number.split(' ')[3],
+    //     expires_year: this.props.status[1].expires_year,
+    //     expires_month: this.props.status[1].expires_month,
+    //     csc: this.props.status[1].csc
+    //   }
+    // } else {
+    //     this.state = {firstname: '', lastname: '', card: '',
+    //          card_number: '',
+    //          card_number1: '', card_number2: '',
+    //          card_number3: '', card_number4: '',
+    //           expires_year: '', expires_month: '', csc: ''};
+    //
+    //   }
+    // }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
   }
@@ -24,13 +68,34 @@ class PaymentForm extends React.Component{
     card_total.push(this.state.card_number3);
     card_total.push(this.state.card_number4);
     // console.log(card_total.join(' '));
-    this.setState({["card_number"]: card_total.join(' ')},
-      () => this.props.createPayment(this.props.userId, this.state)
-        .then(
-          () => this.props.fetchUserPayments(this.props.userId))
-        .then(
-          () => this.props.receiveStatus('bye')
-        ));
+    if (this.props.status[0] === "Add") {
+      this.setState({["card_number"]: card_total.join(' ')},
+        () => this.props.createPayment(this.props.userId, this.state)
+          .then(
+            () => this.props.fetchUserPayments(this.props.userId))
+          .then(
+            () => this.props.receiveStatus(false)
+          ));
+    }else {
+      // console.log(this.props.status);
+      // this.props.updatePayment(8,
+      //   {firstname: "kevin", lastname: "love", card: "mastercard", card_number: "1234 1231 2131 4322",
+      //     expires_month: "5", expires_year: "4", csc: "410", user_id: "2"});
+      // console.log(parseInt(this.props.status.split(' ')[1]));
+      // this.setState({["card_number"]: card_total.join(' ')},
+      //   () => console.log(this.state)
+          // .then(
+          //   () => this.props.fetchUserPayments(this.props.userId))
+          // .then(
+          //   () => this.props.receiveStatus('bye')
+        // );
+        console.log(this.state);
+        console.log(this.props.status[1]);
+        this.props.updatePayment(parseInt(this.state.id), this.state)
+        .then( () => this.props.fetchUserPayments(this.props.userId)
+        .then( () => this.props.receiveStatus(false)));
+    }
+
 
     // console.log(this.props);
     // console.log(this.state);
@@ -61,22 +126,22 @@ class PaymentForm extends React.Component{
             onChange={this.update('lastname')}></input>
         </div>
         <div className='cc-input-div'>
-          <input type="password"
+          <input type="text"
             maxLength='4'
             className='payment-cc-input'
             placeholder='####'
             onChange={this.update('card_number1')}></input>
-          <input type="password"
+          <input type="text"
             maxLength='4'
             className='payment-cc-input'
             placeholder='####'
             onChange={this.update('card_number2')}></input>
-          <input type="password"
+          <input type="text"
             maxLength='4'
             className='payment-cc-input'
             placeholder='####'
             onChange={this.update('card_number3')}></input>
-          <input type="password"
+          <input type="text"
             maxLength='4'
             className='payment-cc-input'
             placeholder='####'
@@ -135,7 +200,7 @@ class PaymentForm extends React.Component{
               className='payment-form-input csc-input'
               placeholder='csc'
               onChange={this.update('csc')}></input>
-            <input type='Submit' className='submit-button' value='Add'/>
+            <input type='Submit' className='submit-button' value={this.props.status[0]}/>
           </div>
         </div>
       </form>

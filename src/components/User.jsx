@@ -15,16 +15,23 @@ class User extends React.Component{
   }
 
   renderForm(){
-    if (this.props.status === 'addForm') {
+    let status = this.props.status;
+    if (!status) {
+
+    }else if (status[0] === 'Add') {
+      return(
+        <PaymentForm userId={this.props.userId}/>
+      );
+    }else if (status[0] === 'Update') {
       return(
         <PaymentForm userId={this.props.userId}/>
       );
     }
   }
 
-  changeStatus() {
+  changeStatus(status) {
     // console.log('in');
-    this.props.receiveStatus('addForm');
+    this.props.receiveStatus(status);
   }
 
 
@@ -37,7 +44,7 @@ class User extends React.Component{
         </div>
         <div className='list-and-form'>
           <div>
-            <div className='add-div' onClick={this.changeStatus}>
+            <div className='add-div' onClick={() => this.changeStatus(['Add'])}>
               <i className="fa fa-plus-circle fa-lg add-button" aria-hidden="true"></i>
               <h1 className='add-button add-text'>Add</h1>
             </div>
