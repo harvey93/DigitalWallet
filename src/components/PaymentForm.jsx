@@ -89,11 +89,14 @@ class PaymentForm extends React.Component{
           // .then(
           //   () => this.props.receiveStatus('bye')
         // );
-        console.log(this.state);
-        console.log(this.props.status[1]);
-        this.props.updatePayment(parseInt(this.state.id), this.state)
-        .then( () => this.props.fetchUserPayments(this.props.userId)
-        .then( () => this.props.receiveStatus(false)));
+        // console.log(this.state);
+        // this.setState({["card_number"] : card_total.join(' ')},
+        //   () => console.log(this.state));
+        // console.log(this.props.status[1]);
+        this.setState({["card_number"]: card_total.join(' ')},
+          () => this.props.updatePayment(parseInt(this.state.id), this.state)
+          .then( () => this.props.fetchUserPayments(this.props.userId)
+            .then( () => this.props.receiveStatus(false))));
     }
 
 
