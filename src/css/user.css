@@ -10,6 +10,8 @@
   margin-top: 30px;
   display: flex;
   justify-content: space-around;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .add-button {
@@ -38,4 +40,23 @@
     .list-and-form {
         display: block;
     }
+    .user-div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: pink;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: pink;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: pink;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: pink;
 }

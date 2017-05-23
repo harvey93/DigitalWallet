@@ -29,33 +29,12 @@ class PaymentForm extends React.Component{
         };
         // this.state = this.props.status[1];
     } else {
-      this.state = {firstname: '', lastname: '', card: '',
+      this.state = {firstname: 'firstname', lastname: 'lastname', card: '',
                card_number: '',
                card_number1: '', card_number2: '',
                card_number3: '', card_number4: '',
-                expires_year: '', expires_month: '', csc: ''};
+                expires_year: 'YY', expires_month: 'MM', csc: 'csc'};
     }
-    // if (this.props.status[1]) {
-    //   this.state = {
-    //     firstname: this.props.status[1].firstname, lastname: this.props.status[1].lastname,
-    //     card: this.props.status[1].card, card_number: this.props.status[1].card_number,
-    //     card_number1: this.props.status[1].card_number.split(' ')[0],
-    //     card_number2: this.props.status[1].card_number.split(' ')[1],
-    //     card_number3: this.props.status[1].card_number.split(' ')[2],
-    //     card_number4: this.props.status[1].card_number.split(' ')[3],
-    //     expires_year: this.props.status[1].expires_year,
-    //     expires_month: this.props.status[1].expires_month,
-    //     csc: this.props.status[1].csc
-    //   }
-    // } else {
-    //     this.state = {firstname: '', lastname: '', card: '',
-    //          card_number: '',
-    //          card_number1: '', card_number2: '',
-    //          card_number3: '', card_number4: '',
-    //           expires_year: '', expires_month: '', csc: ''};
-    //
-    //   }
-    // }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
   }
