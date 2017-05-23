@@ -119,32 +119,32 @@ class PaymentForm extends React.Component{
         <div className='name-input-container'>
           <input type="text"
             className='payment-form-input'
-            placeholder='firstname'
+            placeholder= {this.state.firstname}
             maxLength='15'
             onChange={this.update('firstname')}></input>
           <input type="text"
             className='payment-form-input'
-            placeholder='lastname'
+            placeholder={this.state.lastname}
             maxLength='15'
             onChange={this.update('lastname')}></input>
         </div>
         <div className='cc-input-div'>
-          <input type="text"
+          <input type="password"
             maxLength='4'
             className='payment-cc-input'
-            placeholder='####'
+            placeholder="####"
             onChange={this.update('card_number1')}></input>
-          <input type="text"
+          <input type="password"
             maxLength='4'
             className='payment-cc-input'
             placeholder='####'
             onChange={this.update('card_number2')}></input>
-          <input type="text"
+          <input type="password"
             maxLength='4'
             className='payment-cc-input'
             placeholder='####'
             onChange={this.update('card_number3')}></input>
-          <input type="text"
+          <input type="password"
             maxLength='4'
             className='payment-cc-input'
             placeholder='####'
@@ -188,20 +188,20 @@ class PaymentForm extends React.Component{
             <input type="text"
               maxLength='2'
               className='payment-form-input exp-fields'
-              placeholder='MM'
+              placeholder={this.state.expires_month}
               onChange={this.update('expires_month')}></input>
             <h1 className='slash'>/</h1>
             <input type="text"
               maxLength='2'
               className='payment-form-input exp-fields'
-              placeholder='YY'
+              placeholder={this.state.expires_year}
               onChange={this.update('expires_year')}></input>
           </div>
           <div className='submit-container'>
             <input type="text"
               maxLength='3'
               className='payment-form-input csc-input'
-              placeholder='csc'
+              placeholder={this.state.csc}
               onChange={this.update('csc')}></input>
             <input type='Submit' className='submit-button' value={this.props.status[0]}/>
           </div>
