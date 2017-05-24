@@ -9,7 +9,7 @@ Digital Wallet is a simple Application that allows users to create, delete, and 
 
 ![Add Payment](/docs/Add.gif)
 
-The payment form is rendered conditionally based on the value of my status slice of state.
+The payment form is rendered conditionally based on the value of the status slice of state.
 
 ```
 renderForm(){
@@ -27,7 +27,7 @@ renderForm(){
 }
 ```
 
-This allows me to dynamically render the add form, the update form or no form all on the same page.
+This allows for the dynamic rendering of the add form, no form and the update form all on the same page.
 
 ![Update Payment](/docs/Update.gif)
 
