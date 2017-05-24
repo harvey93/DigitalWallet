@@ -64,8 +64,10 @@ router.delete('/api/payments/:id', db.removePayment);
 ```
 ## Future Directions For The Project
 
-* MVC Architecture: Models, Controllers and Model Level Validations.
-* Unit Tests
+* MVC Architecture: Models, Controllers and Model Level Validations
+* UI Level Validations
+* Authentication layer with Passport.js
+* Unit Tests for both UI and Back End
 
 
 ## Running the Digital Wallet Locally
