@@ -71,16 +71,16 @@ module.exports = {
       test: /\.(png|jpg|gif)$/,
       loader: 'url-loader?limit=8192'
     },
-    { 
+    {
       test: /\.json$/,
-      loader: 'json-loader' 
+      loader: 'json-loader'
     },
-    { 
-      test: /\.(ttf|eot|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-      loader: "file-loader" 
+    {
+      test: /\.(ttf|eot|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: "file-loader"
     },
     { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: "url-loader?limit=10000&mimetype=application/font-woff" 
+      loader: "url-loader?limit=10000&mimetype=application/font-woff"
     }]
   },
 
