@@ -65,6 +65,7 @@ router.delete('/api/payments/:id', db.removePayment);
 ## Future Directions For The Project
 
 * MVC Architecture: Models, Controllers and Model Level Validations
+* ORM with Sequelize
 * UI Level Validations
 * Authentication layer with Passport.js
 * Unit Tests for both UI and Back End
