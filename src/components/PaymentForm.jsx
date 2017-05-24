@@ -7,12 +7,6 @@ import { receiveStatus } from '../actions/statusActions.js';
 class PaymentForm extends React.Component{
   constructor(props) {
     super(props);
-    // this.state =
-    // this.state = this.props.status[1] || {firstname: '', lastname: '', card: '',
-    //   card_number: '',
-    //   card_number1: '', card_number2: '',
-    //   card_number3: '', card_number4: '',
-    //    expires_year: '', expires_month: '', csc: ''};
     if (this.props.status[1]) {
         this.state = {
           id: this.props.status[1].id,
@@ -37,6 +31,7 @@ class PaymentForm extends React.Component{
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   handleSubmit(e){
@@ -56,32 +51,11 @@ class PaymentForm extends React.Component{
             () => this.props.receiveStatus(false)
           ));
     }else {
-      // console.log(this.props.status);
-      // this.props.updatePayment(8,
-      //   {firstname: "kevin", lastname: "love", card: "mastercard", card_number: "1234 1231 2131 4322",
-      //     expires_month: "5", expires_year: "4", csc: "410", user_id: "2"});
-      // console.log(parseInt(this.props.status.split(' ')[1]));
-      // this.setState({["card_number"]: card_total.join(' ')},
-      //   () => console.log(this.state)
-          // .then(
-          //   () => this.props.fetchUserPayments(this.props.userId))
-          // .then(
-          //   () => this.props.receiveStatus('bye')
-        // );
-        // console.log(this.state);
-        // this.setState({["card_number"] : card_total.join(' ')},
-        //   () => console.log(this.state));
-        // console.log(this.props.status[1]);
         this.setState({["card_number"]: card_total.join(' ')},
           () => this.props.updatePayment(parseInt(this.state.id), this.state)
           .then( () => this.props.fetchUserPayments(this.props.userId)
             .then( () => this.props.receiveStatus(false))));
     }
-
-
-    // console.log(this.props);
-    // console.log(this.state);
-    // this.props.createPayment(this.props.userId, this.state).then( () => console.log('success'));
   }
 
   update(field){
@@ -90,20 +64,22 @@ class PaymentForm extends React.Component{
     );
   }
 
+  handleCancel(){
+    this.props.receiveStatus(false);
+  }
+
   render(){
-    // cardNums.split(" ")[]
-    // console.log(this.props);
     return (
       <form onSubmit={this.handleSubmit} className='form-div'>
         <div className='name-input-container'>
           <input type="text"
             className='payment-form-input'
-            placeholder= {this.state.firstname}
+            placeholder="firstname"
             maxLength='15'
             onChange={this.update('firstname')}></input>
           <input type="text"
             className='payment-form-input'
-            placeholder={this.state.lastname}
+            placeholder="lastname"
             maxLength='15'
             onChange={this.update('lastname')}></input>
         </div>
@@ -167,22 +143,26 @@ class PaymentForm extends React.Component{
             <input type="text"
               maxLength='2'
               className='payment-form-input exp-fields'
-              placeholder={this.state.expires_month}
+              placeholder="MM"
               onChange={this.update('expires_month')}></input>
             <h1 className='slash'>/</h1>
             <input type="text"
               maxLength='2'
               className='payment-form-input exp-fields'
-              placeholder={this.state.expires_year}
+              placeholder="YY"
               onChange={this.update('expires_year')}></input>
           </div>
-          <div className='submit-container'>
+          <div>
             <input type="text"
               maxLength='3'
               className='payment-form-input csc-input'
-              placeholder={this.state.csc}
+              placeholder="CSC"
               onChange={this.update('csc')}></input>
+
+          </div>
+          <div className='submit-container'>
             <input type='Submit' className='submit-button' value={this.props.status[0]}/>
+            <h1 className='submit-button delete'onClick={this.handleCancel}>Cancel</h1>
           </div>
         </div>
       </form>

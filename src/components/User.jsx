@@ -32,6 +32,7 @@ class User extends React.Component{
   changeStatus(status) {
     // console.log('in');
     this.props.receiveStatus(status);
+    // this.render();
   }
 
 

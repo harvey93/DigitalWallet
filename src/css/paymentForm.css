@@ -87,7 +87,7 @@ appearance: none;
 .exp-fields {
   width: 60px;
   border: none;
-
+  height: 40px;
 }
 
 .exp-fields-div {
@@ -98,6 +98,7 @@ appearance: none;
 
 .csc-input {
   width: 60px;
+  height: 40px;
 }
 
 .slash {
@@ -108,7 +109,7 @@ appearance: none;
 .submit-container {
   width: 150px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .submit-button {
@@ -117,4 +118,14 @@ appearance: none;
   border-radius: 2px;
   width: 60px;
   text-align: center;
+}
+
+.delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete:hover {
+  cursor: pointer;
 }

@@ -21,6 +21,7 @@ class PaymentItem extends React.Component{
 
   changeStatus(status) {
     // console.log('in');
+    console.log(status);
     this.props.receiveStatus(status);
   }
 
