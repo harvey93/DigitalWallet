@@ -71,7 +71,7 @@ router.delete('/api/payments/:id', db.removePayment);
 * Unit Tests for both UI and Back End
 
 
-## Running the Digital Wallet Locally
+## Running Digital Wallet Locally
 
 * `git clone https://github.com/harvey93/DigitalWallet.git`
 * `cd DigitalWallet`
